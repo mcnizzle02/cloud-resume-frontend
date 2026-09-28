@@ -97,6 +97,7 @@ ul { margin: 0; padding-left: 1.1em; list-style: disc; }
     border-bottom: 0;
     border-right: 1px solid var(--rule);
     position: sticky;
+    scrollbar-width: none;
     top: 0;
     align-self: start;
     max-height: 100vh;
