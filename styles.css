@@ -1,0 +1,320 @@
+/* =========================================================
+   Leamon McNutt — resume
+   Design idea: one quiet page, with the experience timeline
+   as the single memorable element. Marker color encodes era:
+   blue = IT roles, olive = military & deployed service.
+   ========================================================= */
+
+/* ---------- Design tokens (light theme) ---------- */
+:root {
+  --paper:   #F6F7F9;   /* page background */
+  --surface: #FFFFFF;   /* left rail */
+  --ink:     #1B2330;   /* main text, deep slate */
+  --muted:   #5A6677;   /* secondary text */
+  --rule:    #D9DEE5;   /* lines and the timeline spine */
+  --it:      #1F5FA8;   /* IT roles + links */
+  --service: #5F6B34;   /* military / deployed service (olive drab) */
+
+  --font-head: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  --step--1: 0.875rem;
+  --step-0:  1.0625rem;
+  --step-1:  1.25rem;
+  --step-2:  1.5rem;
+  --step-4:  2.5rem;
+
+  color-scheme: light dark;
+}
+
+/* ---------- Dark theme: follows the visitor's OS setting ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:   #121820;
+    --surface: #19212C;
+    --ink:     #E4E8EE;
+    --muted:   #9AA6B6;
+    --rule:    #2C3644;
+    --it:      #7FB2EE;
+    --service: #A9B774;
+  }
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: var(--it);
+  text-underline-offset: 0.2em;
+}
+a:focus-visible {
+  outline: 2px solid var(--it);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+ul { margin: 0; padding-left: 1.1em; list-style: disc; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Page layout: rail + main column ---------- */
+.page {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 60rem) {
+  .page {
+    grid-template-columns: 20rem 1fr;
+    min-height: 100vh;
+  }
+  .rail {
+    border-bottom: 0;
+    border-right: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+/* ---------- Left rail ---------- */
+.rail {
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.name {
+  font-size: var(--step-4);
+  font-weight: 800;
+  font-stretch: 80%;          /* Archivo's width axis: tall, condensed name */
+  letter-spacing: -0.01em;
+}
+
+.title {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-head);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--it);
+}
+
+.location {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--step--1);
+}
+
+.rail-section h2 {
+  font-size: var(--step-0);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.certs {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  font-size: var(--step--1);
+}
+.cert-name { display: block; font-weight: 600; }
+.status   { color: var(--muted); }
+
+.skills { margin: 0; font-size: var(--step--1); }
+.skills dt {
+  font-family: var(--font-head);
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+.skills dt:first-child { margin-top: 0; }
+.skills dd { margin: 0.15rem 0 0; color: var(--muted); }
+
+.counter {
+  margin: 0;
+  margin-top: auto;           /* pins counter to the bottom of the rail */
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+#visitor-count {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: var(--step-1);
+  color: var(--ink);
+  margin-right: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Main column ---------- */
+.main {
+  padding: 2.5rem 1.5rem 3rem;
+  max-width: 46rem;           /* keeps line length readable */
+}
+@media (min-width: 60rem) {
+  .main { padding: 3.5rem 3.5rem 4rem; }
+}
+
+.summary { margin-bottom: 3rem; }
+.lede {
+  font-size: var(--step-2);
+  line-height: 1.4;
+  margin-top: 0;
+}
+.summary p:last-child { color: var(--muted); margin-bottom: 0; }
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.main h2 { font-size: var(--step-2); font-weight: 700; }
+
+/* Legend explaining the marker colors */
+.legend {
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.key::before {
+  content: "";
+  display: inline-block;
+  width: 0.7em; height: 0.7em;
+  border-radius: 50%;
+  margin-right: 0.4em;
+  vertical-align: 0.02em;
+}
+.key-it::before      { background: var(--it); }
+.key-service::before { background: var(--service); }
+
+/* ---------- Timeline: the signature element ---------- */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* the vertical spine */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--rule);
+}
+
+.role {
+  position: relative;
+  padding-left: 2.25rem;
+  padding-bottom: 2.25rem;
+}
+.role:last-child { padding-bottom: 0; }
+
+/* the marker on the spine; color set by era */
+.role::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--marker);
+  box-shadow: 0 0 0 4px var(--paper);   /* gap around the dot */
+}
+.role-it      { --marker: var(--it); }
+.role-service { --marker: var(--service); }
+
+.when {
+  font-family: var(--font-head);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--marker);
+  font-variant-numeric: tabular-nums;
+}
+
+.role h3 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  margin-top: 0.15rem;
+}
+
+.org {
+  margin: 0.2rem 0 0.6rem;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.role li + li { margin-top: 0.35rem; }
+
+/* ---------- Education ---------- */
+.education { margin-top: 3.5rem; }
+.education h2 { margin-bottom: 1.25rem; }
+.edu-item + .edu-item { margin-top: 1rem; }
+.edu-item h3 { font-size: var(--step-0); font-weight: 700; }
+.when-inline { white-space: nowrap; margin-left: 0.5em; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Print: a clean paper copy ---------- */
+@media print {
+  :root { --paper: #fff; --surface: #fff; }
+  .page { grid-template-columns: 1fr; }
+  .rail { position: static; border: 0; max-height: none; }
+  .counter, .todo-link, .site-footer { display: none; }
+  .role { break-inside: avoid; }
+}

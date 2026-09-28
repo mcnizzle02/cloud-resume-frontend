@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leamon McNutt | Cloud & Systems Administrator</title>
+  <meta name="description" content="Resume of Leamon McNutt, cloud and systems administrator with 13 years of IT infrastructure experience. U.S. Army veteran.">
+
+  <!-- Fonts: Archivo for headings, Source Serif 4 for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <!-- ===== Left rail: identity, contact, skills, certs ===== -->
+    <aside class="rail">
+      <header class="identity">
+        <h1 class="name">Leamon McNutt</h1>
+        <p class="title">Cloud &amp; Systems Administrator</p>
+        <p class="location">Mobile, Alabama area</p>
+      </header>
+
+      <nav class="contact" aria-label="Contact and links">
+        <a href="mailto:lee.mcnutt02@gmail.com">lee.mcnutt02@gmail.com</a>
+        <a href="https://github.com/mcnizzle02">GitHub</a>
+        <!-- TODO: add your LinkedIn URL -->
+        <!-- TODO (step 16): link your blog post here once it's published -->
+        <a href="#" class="todo-link">What I learned building this site</a>
+      </nav>
+
+      <section class="rail-section" aria-labelledby="certs-heading">
+        <h2 id="certs-heading">Certifications</h2>
+        <ul class="certs">
+          <li>
+            <span class="cert-name">Microsoft Azure Fundamentals (AZ-900)</span>
+            <span class="status">Exam scheduled</span>
+          </li>
+          <li>
+            <span class="cert-name">CompTIA Security+ (SY0-701)</span>
+            <span class="status">In progress</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="rail-section" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Technical skills</h2>
+        <dl class="skills">
+          <dt>Cloud &amp; identity</dt>
+          <dd>Microsoft Entra ID, Intune, Azure Virtual Machines, Exchange Online, Microsoft 365 administration</dd>
+
+          <dt>Systems &amp; infrastructure</dt>
+          <dd>Windows Server, Active Directory, Group Policy, VMware Workstation Pro, PowerShell</dd>
+
+          <dt>Security &amp; monitoring</dt>
+          <dd>Wazuh SIEM, Sysmon log-based detection, vulnerability and patch management, BeyondTrust PAM</dd>
+
+          <dt>Endpoint management</dt>
+          <dd>Intune compliance policies, SCCM / Endpoint Configuration Manager, imaging and deployment</dd>
+
+          <dt>Service management</dt>
+          <dd>ServiceNow incident and change workflows</dd>
+        </dl>
+      </section>
+
+      <!-- Visitor counter (step 7). main.js fills this in once the API exists. -->
+      <p class="counter">
+        <span id="visitor-count" aria-live="polite">&mdash;</span>
+        <span class="counter-label">visits to this page</span>
+      </p>
+    </aside>
+
+    <!-- ===== Main column ===== -->
+    <main class="main">
+      <section class="summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading" class="visually-hidden">Summary</h2>
+        <p class="lede">
+          Thirteen years keeping Microsoft environments running, from reimaging PCs on a
+          deployed air base to administering Entra ID and Intune for a law firm today.
+        </p>
+        <p>
+          I specialize in Microsoft cloud identity and endpoint management, and I build
+          infrastructure and security detection labs (Windows Server, Active Directory,
+          VMware, SIEM) on my own time to stay current with enterprise environments.
+          U.S. Army veteran known for reliability, clear communication, and follow-through
+          under pressure.
+        </p>
+      </section>
+
+      <section class="experience" aria-labelledby="exp-heading">
+        <div class="section-head">
+          <h2 id="exp-heading">Experience</h2>
+          <p class="legend">
+            <span class="key key-it">IT roles</span>
+            <span class="key key-service">Military &amp; deployed service</span>
+          </p>
+        </div>
+
+        <ol class="timeline">
+          <li class="role role-it">
+            <div class="when">2023 – present</div>
+            <h3>IT Help Desk Analyst, Tier 2</h3>
+            <p class="org">Opensity Solutions (formerly K2 Services), Mobile, AL</p>
+            <ul>
+              <li>Administer Microsoft Entra ID and Intune for a 24-attorney, 32-staff law firm, managing device compliance, licensing, and security patching to reduce endpoint vulnerabilities.</li>
+              <li>Resolve 40+ tickets per week across deskside, remote, phone, and email channels while maintaining 95%+ client satisfaction.</li>
+              <li>Deploy and maintain 200+ endpoints and 20+ business applications, sustaining 99% uptime across the firm's device fleet.</li>
+              <li>Author custom Group Policy Objects to enforce workstation security compliance across the domain.</li>
+              <li>Use BeyondTrust for secure remote support and ServiceNow for incident and change tracking.</li>
+              <li>Lead hardware refresh rollouts and firmwide migrations, consistently finishing ahead of schedule.</li>
+            </ul>
+          </li>
+
+          <li class="role role-it">
+            <div class="when">2022 – 2023</div>
+            <h3>End User Support Technician</h3>
+            <p class="org">Alorica, Mobile, AL</p>
+            <ul>
+              <li>Supported Microsoft 365 and multi-factor authentication for a large call center workforce, resolving identity and access issues at scale.</li>
+              <li>Maintained Active Directory and SCCM, keeping accounts organized across OUs and removing inactive accounts.</li>
+              <li>Imaged 1,000+ PCs for a Verizon Wireless deployment using SCCM, and managed inventory for a warehouse of about 4,000 PCs and 2,000 monitors.</li>
+              <li>Provided remote troubleshooting through Bomgar and configured VoIP phones for call center agents.</li>
+            </ul>
+          </li>
+
+          <li class="role role-it">
+            <div class="when">2015 – 2022</div>
+            <h3>IT Systems Technician</h3>
+            <p class="org">Advanced Systems Design, Mobile, AL</p>
+            <ul>
+              <li>Managed PCs, printers, and network hardware for 120 users across 42 retail locations in southern Alabama.</li>
+              <li>Planned and executed a 60-PC technology refresh from scheduling through completion.</li>
+              <li>Maintained Active Directory profiles and password resets, and administered accounts in Microsoft D365.</li>
+              <li>Diagnosed and repaired modem, router, and access point issues, coordinating with external providers as needed.</li>
+            </ul>
+          </li>
+
+          <li class="role role-it">
+            <div class="when">2013 – 2015</div>
+            <h3>IT Specialist</h3>
+            <p class="org">VT Mobile Aerospace Engineering, Mobile, AL</p>
+            <ul>
+              <li>Migrated about 30 desktops and laptops from Windows XP to Windows 7 and provided desktop support for 80 users.</li>
+              <li>Managed Active Directory accounts and supported the SAP application environment.</li>
+            </ul>
+          </li>
+
+          <li class="role role-service">
+            <div class="when">2011 – 2013</div>
+            <h3>Movement Control Specialist</h3>
+            <p class="org">ITT Exelis, Bagram Air Base, Afghanistan</p>
+            <ul>
+              <li>Coordinated logistics and shipping documentation independently in a high-tempo deployed environment, maintaining relationships with business and external partners.</li>
+            </ul>
+          </li>
+
+          <li class="role role-service">
+            <div class="when">2008 – 2009</div>
+            <h3>Information Management Officer</h3>
+            <p class="org">United States Army, Balad Air Base, Iraq</p>
+            <ul>
+              <li>Administered Active Directory accounts for 40 users and migrated about 50 PCs from Windows XP to Windows 7.</li>
+              <li>Reimaged 75+ PCs to provision new users with network access in a deployed operational environment.</li>
+            </ul>
+          </li>
+
+          <li class="role role-service">
+            <div class="when">2002 – 2007</div>
+            <h3>Movement Control Specialist</h3>
+            <p class="org">United States Army, Mobile, AL</p>
+            <ul>
+              <li>Trained 50 personnel on professional development, safety, and operational procedures while supervising the movement of 148,000+ pieces of cargo and equipment.</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section class="education" aria-labelledby="edu-heading">
+        <h2 id="edu-heading">Education</h2>
+        <div class="edu-item">
+          <h3>B.S., Computer Science Information Technology</h3>
+          <p class="org">University of South Alabama, Mobile, AL <span class="when-inline">May 2020</span></p>
+        </div>
+        <div class="edu-item">
+          <h3>Network Security Administrator Program</h3>
+          <p class="org">New Horizons Computer Learning Center, Pensacola, FL <span class="when-inline">Sep – Nov 2013</span></p>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>Hosted on Azure Storage behind Azure Front Door. Visitor count served by an Azure Function backed by Cosmos DB.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
