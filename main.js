@@ -2,7 +2,7 @@
 //
 // Once your Azure Function is deployed (steps 8-10), paste its URL below.
 // Until then the counter shows a dash and the page works normally.
-const API_URL = ""; // e.g. "https://<your-function-app>.azurewebsites.net/api/visitorcount"
+const API_URL = "https://func-cloudresume-lm-a2f4d4c4dpf9a3cc.eastus-01.azurewebsites.net/api/visitorcount"; // e.g. "https://<your-function-app>.azurewebsites.net/api/visitorcount"
 
 async function updateVisitorCount() {
   const el = document.getElementById("visitor-count");
