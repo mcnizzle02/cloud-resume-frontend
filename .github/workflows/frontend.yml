@@ -1,0 +1,84 @@
+# Cloud Resume Challenge - frontend CI/CD (step 15)
+#
+# On every push to main: upload the website files to the $web container in
+# Azure Storage, then purge Azure Front Door's cache so visitors get the new
+# version. Authentication uses OIDC - no Azure secrets are stored anywhere.
+
+name: Frontend CI/CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-production
+  cancel-in-progress: false
+
+env:
+  STORAGE_ACCOUNT: stcloudresumelm01
+  RESOURCE_GROUP: rg-cloud-resume
+  FRONT_DOOR_PROFILE: afd-cloud-resume
+  FRONT_DOOR_ENDPOINT: resume-lm
+  SITE_URL: https://leemcnutt.dev
+  # Browsers and Front Door may reuse a file for up to 5 minutes before
+  # checking for a newer version.
+  CACHE_CONTROL: "public, max-age=300"
+
+jobs:
+  deploy:
+    name: Deploy website
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write # allows this job to request an OIDC token for Azure
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v5
+
+      # Allowlist: copy only the file types the website needs. README.md,
+      # .gitignore, the .github folder, and anything added to the repo later
+      # never get published unless they match these patterns.
+      - name: Stage website files
+        run: |
+          mkdir dist
+          cp ./*.html ./*.css ./*.js dist/
+          echo "Files to publish:"
+          ls -la dist
+
+      - name: Sign in to Azure (OIDC, no secrets)
+        uses: azure/login@v2 # use the same version as your backend workflow
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Upload to Azure Storage
+        run: |
+          az storage blob upload-batch \
+            --account-name "$STORAGE_ACCOUNT" \
+            --auth-mode login \
+            --destination '$web' \
+            --source dist \
+            --overwrite true \
+            --content-cache-control "$CACHE_CONTROL"
+
+      - name: Purge Front Door cache
+        run: |
+          az afd endpoint purge \
+            --resource-group "$RESOURCE_GROUP" \
+            --profile-name "$FRONT_DOOR_PROFILE" \
+            --endpoint-name "$FRONT_DOOR_ENDPOINT" \
+            --domains leemcnutt.dev www.leemcnutt.dev resume-lm-afgwathgcrb6erh6.z03.azurefd.net \
+            --content-paths "/*" \
+            --no-wait
+
+      - name: Smoke test the live site
+        run: |
+          STATUS=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL")
+          echo "HTTP $STATUS from $SITE_URL"
+          [ "$STATUS" = "200" ]
